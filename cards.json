@@ -1,0 +1,1028 @@
+{
+  "source": "TCGdex API v2 (https://api.tcgdex.net/v2/), geprüft am 2026-10-07",
+  "sets": {
+    "PAL": {
+      "id": "sv02",
+      "name": "Entwicklungen in Paldea",
+      "nameEn": "Paldea Evolved",
+      "official": 193
+    },
+    "MEG": {
+      "id": "me01",
+      "name": "Mega-Entwicklung",
+      "nameEn": "Mega Evolution",
+      "official": 132
+    },
+    "WHT": {
+      "id": "sv10.5w",
+      "name": "Weiße Flammen",
+      "nameEn": "White Flare",
+      "official": 86
+    },
+    "BLK": {
+      "id": "sv10.5b",
+      "name": "Schwarze Blitze",
+      "nameEn": "Black Bolt",
+      "official": 86
+    },
+    "SFA": {
+      "id": "sv06.5",
+      "name": "Nebel der Sagen",
+      "nameEn": "Shrouded Fable",
+      "official": 64
+    },
+    "TWM": {
+      "id": "sv06",
+      "name": "Maskerade im Zwielicht",
+      "nameEn": "Twilight Masquerade",
+      "official": 167
+    },
+    "DRI": {
+      "id": "sv10",
+      "name": "Ewige Rivalen",
+      "nameEn": "Destined Rivals",
+      "official": 182
+    }
+  },
+  "lines": [
+    {
+      "id": "felori",
+      "name": "Felori-Reihe",
+      "type": "grass",
+      "typeLabel": "Pflanze",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv02-196",
+              "name": "Felori",
+              "nameEn": "Sprigatito",
+              "set": "PAL",
+              "number": "196",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/196",
+              "cardmarketId": 715671
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv02-197",
+              "name": "Feliospa",
+              "nameEn": "Floragato",
+              "set": "PAL",
+              "number": "197",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/197",
+              "cardmarketId": 715672
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv02-231",
+              "name": "Maskagato-ex",
+              "nameEn": "Meowscarada ex",
+              "set": "PAL",
+              "number": "231",
+              "rarity": "Ultra Selten",
+              "rarityEn": "Ultra Rare",
+              "variant": "Full Art",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/231",
+              "cardmarketId": 715706
+            },
+            {
+              "id": "sv02-256",
+              "name": "Maskagato-ex",
+              "nameEn": "Meowscarada ex",
+              "set": "PAL",
+              "number": "256",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/256",
+              "cardmarketId": 715731
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bisasam",
+      "name": "Bisasam-Reihe",
+      "type": "grass",
+      "typeLabel": "Pflanze",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "me01-133",
+              "name": "Bisasam",
+              "nameEn": "Bulbasaur",
+              "set": "MEG",
+              "number": "133",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/me/me01/133",
+              "cardmarketId": 851204
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "me01-134",
+              "name": "Bisaknosp",
+              "nameEn": "Ivysaur",
+              "set": "MEG",
+              "number": "134",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/me/me01/134",
+              "cardmarketId": 851205
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "me01-177",
+              "name": "Mega-Bisaflor-ex",
+              "nameEn": "Mega Venusaur ex",
+              "set": "MEG",
+              "number": "177",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "image": "https://assets.tcgdex.net/de/me/me01/177",
+              "cardmarketId": 851248
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strawickl",
+      "name": "Strawickl-Reihe",
+      "type": "grass",
+      "typeLabel": "Pflanze",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-087",
+              "name": "Strawickl",
+              "nameEn": "Sewaddle",
+              "set": "WHT",
+              "number": "087",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/087",
+              "cardmarketId": 836071
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-088",
+              "name": "Folikon",
+              "nameEn": "Swadloon",
+              "set": "WHT",
+              "number": "088",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/088",
+              "cardmarketId": 836072
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-089",
+              "name": "Matrifol",
+              "nameEn": "Leavanny",
+              "set": "WHT",
+              "number": "089",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/089",
+              "cardmarketId": 836074
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "floink",
+      "name": "Floink-Reihe",
+      "type": "fire",
+      "typeLabel": "Feuer",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-096",
+              "name": "Floink",
+              "nameEn": "Tepig",
+              "set": "WHT",
+              "number": "096",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/096",
+              "cardmarketId": 836084
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-097",
+              "name": "Ferkokel",
+              "nameEn": "Pignite",
+              "set": "WHT",
+              "number": "097",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/097",
+              "cardmarketId": 836086
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-098",
+              "name": "Flambirex",
+              "nameEn": "Emboar",
+              "set": "WHT",
+              "number": "098",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/098",
+              "cardmarketId": 836088
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "krokel",
+      "name": "Krokel-Reihe",
+      "type": "fire",
+      "typeLabel": "Feuer",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv02-201",
+              "name": "Krokel",
+              "nameEn": "Fuecoco",
+              "set": "PAL",
+              "number": "201",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/201",
+              "cardmarketId": 715676
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv02-202",
+              "name": "Lokroko",
+              "nameEn": "Crocalor",
+              "set": "PAL",
+              "number": "202",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/202",
+              "cardmarketId": 715677
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv02-233",
+              "name": "Skelokrok-ex",
+              "nameEn": "Skeledirge ex",
+              "set": "PAL",
+              "number": "233",
+              "rarity": "Ultra Selten",
+              "rarityEn": "Ultra Rare",
+              "variant": "Full Art",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/233",
+              "cardmarketId": 715708
+            },
+            {
+              "id": "sv02-258",
+              "name": "Skelokrok-ex",
+              "nameEn": "Skeledirge ex",
+              "set": "PAL",
+              "number": "258",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/258",
+              "cardmarketId": 715733
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lichtel",
+      "name": "Lichtel-Reihe",
+      "type": "fire",
+      "typeLabel": "Feuer",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-101",
+              "name": "Lichtel",
+              "nameEn": "Litwick",
+              "set": "WHT",
+              "number": "101",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/101",
+              "cardmarketId": 836095
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-102",
+              "name": "Laternecto",
+              "nameEn": "Lampent",
+              "set": "WHT",
+              "number": "102",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/102",
+              "cardmarketId": 836097
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-103",
+              "name": "Skelabra",
+              "nameEn": "Chandelure",
+              "set": "WHT",
+              "number": "103",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/103",
+              "cardmarketId": 836099
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ottaro",
+      "name": "Ottaro-Reihe",
+      "type": "water",
+      "typeLabel": "Wasser",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-105",
+              "name": "Ottaro",
+              "nameEn": "Oshawott",
+              "set": "WHT",
+              "number": "105",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/105",
+              "cardmarketId": 836104
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-106",
+              "name": "Zwottronin",
+              "nameEn": "Dewott",
+              "set": "WHT",
+              "number": "106",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/106",
+              "cardmarketId": 836106
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-107",
+              "name": "Admurai",
+              "nameEn": "Samurott",
+              "set": "WHT",
+              "number": "107",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/107",
+              "cardmarketId": 836108
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gelatini",
+      "name": "Gelatini-Reihe",
+      "type": "water",
+      "typeLabel": "Wasser",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-111",
+              "name": "Gelatini",
+              "nameEn": "Vanillite",
+              "set": "WHT",
+              "number": "111",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/111",
+              "cardmarketId": 836116
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-112",
+              "name": "Gelatroppo",
+              "nameEn": "Vanillish",
+              "set": "WHT",
+              "number": "112",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/112",
+              "cardmarketId": 836118
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-113",
+              "name": "Gelatwino",
+              "nameEn": "Vanilluxe",
+              "set": "WHT",
+              "number": "113",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/113",
+              "cardmarketId": 836120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schallquap",
+      "name": "Schallquap-Reihe",
+      "type": "water",
+      "typeLabel": "Wasser",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-103",
+              "name": "Schallquap",
+              "nameEn": "Tympole",
+              "set": "BLK",
+              "number": "103",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/103",
+              "cardmarketId": 836113
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-104",
+              "name": "Mebrana",
+              "nameEn": "Palpitoad",
+              "set": "BLK",
+              "number": "104",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/104",
+              "cardmarketId": 836115
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-105",
+              "name": "Branawarz",
+              "nameEn": "Seismitoad",
+              "set": "BLK",
+              "number": "105",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/105",
+              "cardmarketId": 836117
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zapplardin",
+      "name": "Zapplardin-Reihe",
+      "type": "electric",
+      "typeLabel": "Elektro",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-113",
+              "name": "Zapplardin",
+              "nameEn": "Tynamo",
+              "set": "BLK",
+              "number": "113",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/113",
+              "cardmarketId": 836135
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-114",
+              "name": "Zapplalek",
+              "nameEn": "Eelektrik",
+              "set": "BLK",
+              "number": "114",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/114",
+              "cardmarketId": 836137
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-115",
+              "name": "Zapplarang",
+              "nameEn": "Eelektross",
+              "set": "BLK",
+              "number": "115",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/115",
+              "cardmarketId": 836139
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zwirrlicht",
+      "name": "Zwirrlicht-Reihe",
+      "type": "psychic",
+      "typeLabel": "Psycho",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv06.5-068",
+              "name": "Zwirrlicht",
+              "nameEn": "Duskull",
+              "set": "SFA",
+              "number": "068",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv06.5/068",
+              "cardmarketId": 780963
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv06.5-069",
+              "name": "Zwirrklop",
+              "nameEn": "Dusclops",
+              "set": "SFA",
+              "number": "069",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv06.5/069",
+              "cardmarketId": 780964
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv06.5-070",
+              "name": "Zwirrfinst",
+              "nameEn": "Dusknoir",
+              "set": "SFA",
+              "number": "070",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv06.5/070",
+              "cardmarketId": 780965
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "praktibalk",
+      "name": "Praktibalk-Reihe",
+      "type": "fighting",
+      "typeLabel": "Kampf",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-125",
+              "name": "Praktibalk",
+              "nameEn": "Timburr",
+              "set": "BLK",
+              "number": "125",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/125",
+              "cardmarketId": 836167
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-126",
+              "name": "Strepoli",
+              "nameEn": "Gurdurr",
+              "set": "BLK",
+              "number": "126",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/126",
+              "cardmarketId": 836169
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-127",
+              "name": "Meistagrif",
+              "nameEn": "Conkeldurr",
+              "set": "BLK",
+              "number": "127",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/127",
+              "cardmarketId": 836170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kiesling",
+      "name": "Kiesling-Reihe",
+      "type": "fighting",
+      "typeLabel": "Kampf",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5w-127",
+              "name": "Kiesling",
+              "nameEn": "Roggenrola",
+              "set": "WHT",
+              "number": "127",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/127",
+              "cardmarketId": 836143
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5w-128",
+              "name": "Sedimantur",
+              "nameEn": "Boldore",
+              "set": "WHT",
+              "number": "128",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/128",
+              "cardmarketId": 836145
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5w-129",
+              "name": "Brockoloss",
+              "nameEn": "Gigalith",
+              "set": "WHT",
+              "number": "129",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5w/129",
+              "cardmarketId": 836147
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toxiped",
+      "name": "Toxiped-Reihe",
+      "type": "darkness",
+      "typeLabel": "Unlicht",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-132",
+              "name": "Toxiped",
+              "nameEn": "Venipede",
+              "set": "BLK",
+              "number": "132",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/132",
+              "cardmarketId": 836181
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-133",
+              "name": "Rollum",
+              "nameEn": "Whirlipede",
+              "set": "BLK",
+              "number": "133",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/133",
+              "cardmarketId": 836183
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-134",
+              "name": "Cerapendra",
+              "nameEn": "Scolipede",
+              "set": "BLK",
+              "number": "134",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/134",
+              "cardmarketId": 836187
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ganovil",
+      "name": "Ganovil-Reihe",
+      "type": "darkness",
+      "typeLabel": "Unlicht",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-135",
+              "name": "Ganovil",
+              "nameEn": "Sandile",
+              "set": "BLK",
+              "number": "135",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/135",
+              "cardmarketId": 836190
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-136",
+              "name": "Rokkaiman",
+              "nameEn": "Krokorok",
+              "set": "BLK",
+              "number": "136",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/136",
+              "cardmarketId": 836192
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-137",
+              "name": "Rabigator",
+              "nameEn": "Krookodile",
+              "set": "BLK",
+              "number": "137",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/137",
+              "cardmarketId": 836193
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milza",
+      "name": "Milza-Reihe",
+      "type": "dragon",
+      "typeLabel": "Drache",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv10.5b-145",
+              "name": "Milza",
+              "nameEn": "Axew",
+              "set": "BLK",
+              "number": "145",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/145",
+              "cardmarketId": 836213
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv10.5b-146",
+              "name": "Sharfax",
+              "nameEn": "Fraxure",
+              "set": "BLK",
+              "number": "146",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/146",
+              "cardmarketId": 836215
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10.5b-147",
+              "name": "Maxax",
+              "nameEn": "Haxorus",
+              "set": "BLK",
+              "number": "147",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10.5b/147",
+              "cardmarketId": 836217
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knapfel",
+      "name": "Knapfel-Reihe",
+      "type": "dragon",
+      "typeLabel": "Drache",
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv06-185",
+              "name": "Knapfel",
+              "nameEn": "Applin",
+              "set": "TWM",
+              "number": "185",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv06/185",
+              "cardmarketId": 769359
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv06-170",
+              "name": "Sirapfel",
+              "nameEn": "Dipplin",
+              "set": "TWM",
+              "number": "170",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv06/170",
+              "cardmarketId": 769344
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv10-188",
+              "name": "Hydrapfel",
+              "nameEn": "Hydrapple",
+              "set": "DRI",
+              "number": "188",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "image": "https://assets.tcgdex.net/de/sv/sv10/188",
+              "cardmarketId": 826061
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

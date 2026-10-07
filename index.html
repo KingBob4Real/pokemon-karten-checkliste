@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Karten-Checkliste</title>
+  <meta name="description" content="Checkliste für meine deutschen Pokémon-Karten (Illustration Rares & Full Arts) mit Fortschritt und Cardmarket-Richtwerten.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#e8443a" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16171d" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23fff' stroke='%23222' stroke-width='3'/%3E%3Cpath d='M2 16a14 14 0 0 1 28 0z' fill='%23e8443a' stroke='%23222' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23fff' stroke='%23222' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
+  <link rel="preconnect" href="https://assets.tcgdex.net">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-ball" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">Illustration Rares · Full Arts · Deutsch</p>
+      <h1>Meine Karten-Checkliste</h1>
+
+      <div class="summary">
+        <div class="summary-progress">
+          <div class="summary-count"><strong id="totalOwned">0</strong><span>/ <span id="totalSlots">0</span> Karten</span></div>
+          <div class="bar" aria-hidden="true"><i id="totalBar"></i></div>
+          <p class="summary-lines" id="linesDone">0 von 0 Reihen komplett</p>
+        </div>
+        <div class="summary-cost">
+          <span class="label">Noch fehlend ca.</span>
+          <strong id="totalCost">–</strong>
+          <span class="hint" id="totalCostHint">ab-Preis bis Trend</span>
+        </div>
+      </div>
+
+      <div class="price-row">
+        <button type="button" class="btn btn-light" id="refreshPrices">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Preise aktualisieren</span>
+        </button>
+        <p class="price-status" id="priceStatus" aria-live="polite">Preise werden geladen …</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toolbar" aria-label="Filter">
+    <div class="segmented" role="radiogroup" aria-label="Karten anzeigen">
+      <button type="button" role="radio" data-filter="all" aria-checked="true">Alle</button>
+      <button type="button" role="radio" data-filter="missing" aria-checked="false">Nur fehlende</button>
+      <button type="button" role="radio" data-filter="owned" aria-checked="false">Nur vorhanden</button>
+    </div>
+  </nav>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <main id="lines" aria-live="polite">
+    <p class="loading">Karten werden geladen …</p>
+  </main>
+
+  <p class="empty" id="emptyState" hidden></p>
+
+  <footer class="footer">
+    <section class="backup">
+      <h2>Daten sichern</h2>
+      <p>Dein Abhak-Stand und deine eigenen Preise liegen nur in diesem Browser. Exportiere sie als Datei, um sie auf ein anderes Gerät mitzunehmen.</p>
+      <div class="backup-buttons">
+        <button type="button" class="btn" id="exportBtn">Export (JSON)</button>
+        <label class="btn btn-outline" for="importFile">Import (JSON)</label>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+      </div>
+    </section>
+    <section class="about">
+      <h2>Zu den Preisen</h2>
+      <p><b>„ab“</b> und <b>„Trend“</b> sind Cardmarket-Richtwerte aus der TCGdex-API. Sie gelten für <b>alle Zustände und alle Sprachen</b>, nicht speziell für deutsche Karten in Excellent bis Mint. Den echten Preis siehst du über <b>„Auf Cardmarket ansehen“</b>: Der Link filtert auf Deutsch und mindestens Excellent.</p>
+      <p>Die Summen nehmen für jede fehlende Karte deinen eigenen Preis, falls eingetragen, sonst die Spanne von „ab“ bis „Trend“. Bei Reihen mit zwei ex-Optionen zählt jeweils die günstigere.</p>
+      <p class="small">Kartenbilder &amp; Daten: <a href="https://tcgdex.dev" target="_blank" rel="noopener">TCGdex</a>. Fan-Projekt ohne Verbindung zu Nintendo, Creatures, GAME FREAK, The Pokémon Company oder Cardmarket.</p>
+    </section>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Kartenansicht">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </button>
+      <img id="lightboxImg" alt="">
+      <div class="lightbox-bar">
+        <div>
+          <p class="lightbox-name" id="lightboxName"></p>
+          <p class="lightbox-meta" id="lightboxMeta"></p>
+        </div>
+        <button type="button" class="btn" id="lightboxToggle" aria-pressed="false">Hab ich</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
