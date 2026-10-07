@@ -9,12 +9,19 @@
   <meta name="theme-color" content="#e8443a" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#16171d" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23fff' stroke='%23222' stroke-width='3'/%3E%3Cpath d='M2 16a14 14 0 0 1 28 0z' fill='%23e8443a' stroke='%23222' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23fff' stroke='%23222' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Als App auf dem Home-Bildschirm (iPhone: Teilen → „Zum Home-Bildschirm“) -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Karten">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- crossorigin: damit der Service Worker Bilder & Schriften offline speichern kann -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
-  <link rel="preconnect" href="https://assets.tcgdex.net">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="preconnect" href="https://assets.tcgdex.net" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" crossorigin>
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header class="hero">
@@ -62,6 +69,10 @@
   </nav>
 
   <div class="notice" id="notice" hidden></div>
+  <div class="notice backup-reminder" id="backupReminder" hidden>
+    <span id="backupReminderText"></span>
+    <button type="button" class="btn" id="backupReminderBtn">Jetzt sichern</button>
+  </div>
 
   <main id="lines" aria-live="polite">
     <p class="loading">Karten werden geladen …</p>
@@ -73,6 +84,7 @@
     <section class="backup">
       <h2>Daten sichern</h2>
       <p>Dein Abhak-Stand und deine eigenen Preise liegen nur in diesem Browser. Exportiere sie als Datei, um sie auf ein anderes Gerät mitzunehmen.</p>
+      <p><b>iPhone:</b> In Safari auf Teilen → „Zum Home-Bildschirm“ tippen. Dann ist die Checkliste eine eigene App, funktioniert auch ohne Internet, und iOS löscht deinen Stand nicht mehr nach 7 Tagen ohne Besuch. Die App hat aber einen eigenen Speicher: Vorher in Safari exportieren und die Datei in der App importieren.</p>
       <div class="backup-buttons">
         <button type="button" class="btn" id="exportBtn">Export (JSON)</button>
         <label class="btn btn-outline" for="importFile">Import (JSON)</label>
@@ -92,7 +104,7 @@
       <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Schließen">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
       </button>
-      <img id="lightboxImg" alt="">
+      <img id="lightboxImg" alt="" crossorigin="anonymous">
       <div class="lightbox-bar">
         <div>
           <p class="lightbox-name" id="lightboxName"></p>
@@ -103,6 +115,11 @@
     </div>
   </dialog>
 
-  <script src="app.js?v=3"></script>
+  <div class="toast" id="toast" role="status" hidden>
+    <span id="toastText"></span>
+    <button type="button" id="toastUndo">Rückgängig</button>
+  </div>
+
+  <script src="app.js?v=4"></script>
 </body>
 </html>

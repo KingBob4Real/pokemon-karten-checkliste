@@ -1,0 +1,11 @@
+{
+  "name": "Meine Karten-Checkliste",
+  "short_name": "Karten",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f2ea",
+  "theme_color": "#e8443a",
+  "icons": [{ "src": "icon.png", "sizes": "512x512", "type": "image/png" }]
+}

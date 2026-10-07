@@ -201,9 +201,20 @@ button { font: inherit; color: inherit; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===== Filterleiste ===== */
+/* iPhone-App vom Home-Bildschirm: Statusleiste liegt über der Seite → roter Streifen dahinter, Filterleiste darunter.
+   Im normalen Browser ist safe-area-inset-top 0, dann ändert sich nichts. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--red);
+}
+
 .toolbar {
   position: sticky;
-  top: 0;
+  top: env(safe-area-inset-top, 0px);
   z-index: 20;
   padding: 10px 16px;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
@@ -306,6 +317,48 @@ button { font: inherit; color: inherit; }
   border: 1px solid color-mix(in srgb, var(--t-electric) 60%, transparent);
 }
 @media (min-width: 1132px) { .notice { margin-inline: auto; } }
+
+.backup-reminder { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; font-weight: 700; }
+.backup-reminder[hidden] { display: none; }
+.backup-reminder .btn { min-height: 40px; padding: 8px 14px; font-size: 14px; }
+
+/* „Rückgängig“-Hinweis nach dem Abhaken */
+.toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 6px 6px 6px 16px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: toast-in 0.2s ease;
+}
+.toast[hidden] { display: none; }
+.toast span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toast button {
+  flex: none;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 99px;
+  font-weight: 800;
+  color: var(--ink);
+  background: #fff;
+  cursor: pointer;
+}
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
 
 .loading, .empty {
   text-align: center;

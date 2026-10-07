@@ -10,8 +10,10 @@
     ownPrices: "pkc.ownPrices.v1",
     prices: "pkc.prices.v1",
     filter: "pkc.filter.v1",
+    lastExport: "pkc.lastExport.v1",
   };
   const FILTERS = ["all", "missing", "owned"];
+  const BACKUP_DAYS = 30; // danach erinnert die Seite ans Exportieren
   const RARITY = {
     "Illustration rare": "Illustration Rare",
     "Special illustration rare": "Special Illustration Rare",
@@ -65,6 +67,8 @@
   const int = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
   let filterTimer = null;
   let lightboxId = null;
+  let toastTimer = null;
+  let undoId = null;
 
   // ---------- Hilfsfunktionen ----------
   function isPlainObject(x) {
@@ -275,6 +279,7 @@
     const nr = cardNumber(card);
 
     const img = h("img", {
+      crossorigin: "anonymous", // für den Offline-Speicher im Service Worker
       alt: `${card.name} ${nr}`,
       loading: "lazy",
       decoding: "async",
@@ -350,7 +355,10 @@
     });
     img.addEventListener("load", () => art.classList.remove("no-img"));
 
-    art.addEventListener("click", () => toggleOwned(card.id));
+    art.addEventListener("click", () => {
+      toggleOwned(card.id);
+      showUndo(card.id);
+    });
     zoom.addEventListener("click", () => openLightbox(card.id));
 
     const stored = num(state.ownPrices[card.id]);
@@ -570,6 +578,29 @@
     if (window.scrollY > top) window.scrollTo({ top });
   }
 
+  // Versehentlich angetippt? Kurz „Rückgängig“ anbieten.
+  function showUndo(id) {
+    const v = state.views.get(id);
+    undoId = id;
+    $("#toastText").textContent = `${v.card.name} ${v.nr} ${state.owned.has(id) ? "abgehakt" : "entfernt"}`;
+    $("#toast").hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(hideToast, 5000);
+  }
+
+  function hideToast() {
+    clearTimeout(toastTimer);
+    $("#toast").hidden = true;
+  }
+
+  function updateBackupReminder() {
+    const last = store.get(KEYS.lastExport, null);
+    const days = typeof last === "number" ? Math.floor((Date.now() - last) / 864e5) : null;
+    const due = state.owned.size > 0 && (days == null || days >= BACKUP_DAYS);
+    $("#backupReminder").hidden = !due;
+    if (due) $("#backupReminderText").textContent = days == null ? "Dein Stand ist noch nicht gesichert." : `Letzte Sicherung vor ${days} Tagen.`;
+  }
+
   function showNotice(text) {
     const n = $("#notice");
     n.textContent = text || "";
@@ -723,7 +754,7 @@
   }
 
   // ---------- Export / Import ----------
-  function exportData() {
+  async function exportData() {
     const payload = {
       app: "pokemon-karten-checkliste",
       version: 1,
@@ -731,13 +762,26 @@
       owned: [...state.owned].sort(),
       ownPrices: state.ownPrices,
     };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = h("a", { href: url, download: `karten-checkliste-${new Date().toISOString().slice(0, 10)}.json` });
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    const file = new File([JSON.stringify(payload, null, 2)], `karten-checkliste-${new Date().toISOString().slice(0, 10)}.json`, {
+      type: "application/json",
+    });
+    // iPhone-App vom Home-Bildschirm: Downloads sind dort unzuverlässig → Teilen-Menü („In Dateien sichern“, AirDrop …)
+    if (navigator.standalone && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file] });
+      } catch {
+        return; // abgebrochen → nicht als gesichert zählen
+      }
+    } else {
+      const url = URL.createObjectURL(file);
+      const a = h("a", { href: url, download: file.name });
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+    store.set(KEYS.lastExport, Date.now());
+    updateBackupReminder();
   }
 
   async function importData(file) {
@@ -775,6 +819,8 @@
     updateStates();
     updateSummary();
     applyFilter();
+    store.set(KEYS.lastExport, Date.now()); // die importierte Datei ist ja eine Sicherung
+    updateBackupReminder();
     showNotice(`Import erfolgreich: ${owned.length} Karten abgehakt.`);
   }
 
@@ -793,6 +839,11 @@
     });
     $("#refreshPrices").addEventListener("click", () => loadPrices(true));
     $("#exportBtn").addEventListener("click", exportData);
+    $("#backupReminderBtn").addEventListener("click", exportData);
+    $("#toastUndo").addEventListener("click", () => {
+      hideToast();
+      toggleOwned(undoId);
+    });
     $("#importFile").addEventListener("change", (e) => {
       const file = e.target.files && e.target.files[0];
       if (file) importData(file);
@@ -850,7 +901,17 @@
     updatePrices();
     updateSummary();
     applyFilter();
+    updateBackupReminder();
     loadPrices(false);
+    // iPhone-App vom Home-Bildschirm hat keinen Neu-laden-Knopf → nach 1 h im Hintergrund selbst neu laden (holt Updates)
+    let hiddenAt = 0;
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) hiddenAt = Date.now();
+      else if (hiddenAt && Date.now() - hiddenAt > 60 * 60 * 1000) location.reload();
+    });
+    // Offline-Betrieb und Bitte, den Speicher nicht automatisch zu löschen (Browser darf ablehnen)
+    if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+    if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
   }
 
   init();
