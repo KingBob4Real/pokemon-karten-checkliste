@@ -21,6 +21,8 @@
   --t-fighting: #a3632c;
   --t-darkness: #4b5059;
   --t-dragon: #4f46c8;
+  --t-colorless: #a9875b;
+  --t-mixed: #1f8a8a;
 
   --font-head: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
   --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -39,6 +41,8 @@
     --t-darkness: #8a909c;
     --t-dragon: #7c74f0;
     --t-fighting: #c27e42;
+    --t-colorless: #c9a376;
+    --t-mixed: #3bb3b3;
   }
 }
 
@@ -71,7 +75,7 @@ button { font: inherit; color: inherit; }
 /* ===== Pokéball-Motiv ===== */
 .ball,
 .hero-ball,
-.line-head h2::before {
+.line-head h3::before {
   border-radius: 50%;
   background:
     radial-gradient(circle at 50% 50%, #fff 0 13%, var(--ink) 13% 21%, transparent 21%),
@@ -282,6 +286,31 @@ main {
 .line[data-type="fighting"] { --c: var(--t-fighting); }
 .line[data-type="darkness"] { --c: var(--t-darkness); }
 .line[data-type="dragon"] { --c: var(--t-dragon); }
+.line[data-type="colorless"] { --c: var(--t-colorless); }
+.line[data-type="mixed"] { --c: var(--t-mixed); }
+
+/* Gruppen-Überschriften (Entwicklungsreihen, 151, Evoli …) */
+.group-head {
+  padding: 10px 2px 8px;
+  border-bottom: 2px solid var(--line);
+}
+.group-head:not(:first-child) { margin-top: 10px; }
+.group-head[hidden] { display: none; }
+.group-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.group-head h2 { font-size: 26px; font-weight: 700; }
+.group-count {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+.group-head.is-complete .group-count { color: #fff; background: var(--t-grass); border-color: transparent; }
+.group-sub { margin: 2px 0 0; font-size: 13px; font-weight: 700; color: var(--muted); }
 
 .line-head {
   padding: 12px 14px 10px;
@@ -290,14 +319,14 @@ main {
 
 .line-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
-.line-head h2 {
+.line-head h3 {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 21px;
   font-weight: 600;
 }
-.line-head h2::before {
+.line-head h3::before {
   content: "";
   width: 20px;
   height: 20px;
@@ -341,6 +370,30 @@ main {
 }
 .line-cost { font-weight: 700; color: var(--muted); white-space: nowrap; }
 .line.is-complete .line-cost { color: var(--c); }
+
+/* Budget-Zeile: Budget vs. geplante Gesamtsumme der Gruppe */
+.line-budget {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.line-budget b { color: var(--text); }
+.budget-flag {
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--muted);
+}
+.line-budget.is-ok .budget-flag { background: #2f9e44; }
+.line-budget.is-tight .budget-flag { background: #c77c02; }
+.line-budget.is-over .budget-flag { background: #d6336c; }
 
 /* ===== Karten (horizontal wischbar) ===== */
 .cards {
@@ -391,6 +444,10 @@ main {
   color: var(--c);
   background: color-mix(in srgb, var(--c) 14%, transparent);
 }
+.stage .opt-tag { color: #8a5a00; background: color-mix(in srgb, #f2b705 28%, transparent); }
+@media (prefers-color-scheme: dark) { .stage .opt-tag { color: #f5c542; } }
+/* Gruppen ohne Entwicklungsstufen: leere Stufen-Zeile weglassen */
+.line.no-stages .stage { display: none; }
 
 /* Bild = Abhak-Fläche */
 .art-wrap { position: relative; }
@@ -545,6 +602,13 @@ main {
 .price-note { display: block; margin-top: 2px; font-size: 11px; color: var(--muted); }
 .price.is-empty .price-vals { color: var(--muted); }
 .price.is-empty .price-note { display: none; }
+
+/* Eigene Spanne als Hauptpreis, Cardmarket-Richtwert klein darunter */
+.price-mine { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 8px; }
+.price-mine span { font-size: 11.5px; font-weight: 800; color: var(--muted); }
+.price-mine b { font-family: var(--font-head); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.price.has-mine .price-vals { margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--line); font-size: 12px; color: var(--muted); }
+.price.has-mine .price-vals b { font-size: 12.5px; }
 .line { scroll-margin-top: 72px; }
 
 .own {

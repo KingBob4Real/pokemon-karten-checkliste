@@ -56,6 +56,7 @@
     loadingPrices: false,
     views: new Map(), // Karten-ID → DOM-Referenzen
     lineViews: [],
+    groupViews: [],
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -102,9 +103,29 @@
     return Number.isFinite(n) && n >= 0 ? Math.round(n * 100) / 100 : NaN;
   }
 
+  function fmtAmount(x) {
+    return Number.isInteger(x) ? int.format(x) : x.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtMy([a, b]) {
+    return a === b ? `${fmtAmount(a)} €` : `${fmtAmount(a)}–${fmtAmount(b)} €`;
+  }
+
+  // Eigene Preisspanne aus cards.json: "myPrice": [min, max] (oder eine einzelne Zahl)
+  function myRange(card) {
+    const m = card.myPrice;
+    const arr = Array.isArray(m) ? m : m != null ? [m, m] : null;
+    if (!arr) return null;
+    const a = num(arr[0]);
+    const b = num(arr.length > 1 ? arr[1] : arr[0]);
+    if (a == null || b == null) return null;
+    return [Math.min(a, b), Math.max(a, b)];
+  }
+
   function cardNumber(card) {
     const set = state.data.sets[card.set];
-    return `${card.number}/${String(set.official).padStart(3, "0")}`;
+    // Promos (z. B. MEP) haben keine offizielle Setgröße → nur die Nummer
+    return set && set.official ? `${card.number}/${String(set.official).padStart(3, "0")}` : card.number;
   }
 
   function rarityLabel(card) {
@@ -127,9 +148,12 @@
     return slot.options.some((o) => state.owned.has(o.id));
   }
 
+  // Reihenfolge: eingetragener Preis (gesehen/bezahlt) → meine Spanne aus cards.json → Cardmarket ab–Trend
   function cardEstimate(card) {
     const own = num(state.ownPrices[card.id]);
     if (own != null) return { lo: own, hi: own, own: true };
+    const mine = myRange(card);
+    if (mine) return { lo: mine[0], hi: mine[1], own: false, mine: true };
     const p = livePrice(card.id);
     if (!p) return null;
     const low = num(p.low);
@@ -148,11 +172,12 @@
       lo: Math.min(...ests.map((e) => e.lo)),
       hi: Math.min(...ests.map((e) => e.hi)),
       own: ests.some((e) => e.own),
+      mine: ests.some((e) => e.mine),
     };
   }
 
   function computeLine(line) {
-    const r = { done: 0, total: line.slots.length, lo: 0, hi: 0, unknown: 0, own: false };
+    const r = { done: 0, total: line.slots.length, lo: 0, hi: 0, unknown: 0, own: false, mine: false };
     for (const slot of line.slots) {
       if (slotDone(slot)) {
         r.done++;
@@ -163,11 +188,37 @@
         r.lo += e.lo;
         r.hi += e.hi;
         r.own = r.own || e.own;
+        r.mine = r.mine || e.mine;
       } else {
         r.unknown++;
       }
     }
     return r;
+  }
+
+  // Geplante Gesamtkosten einer Gruppe für den Budget-Vergleich – abgehakte Karten zählen mit.
+  function computePlan(line) {
+    const r = { lo: 0, hi: 0, unknown: 0 };
+    for (const slot of line.slots) {
+      const owned = slot.options.filter((o) => state.owned.has(o.id));
+      const e = slotEstimate(owned.length ? { options: owned } : slot);
+      if (e) {
+        r.lo += e.lo;
+        r.hi += e.hi;
+      } else {
+        r.unknown++;
+      }
+    }
+    return r;
+  }
+
+  function budgetStatus(plan, budget, slots) {
+    if (plan.unknown === slots) return null;
+    const lo = Math.round(plan.lo);
+    const hi = Math.round(plan.hi);
+    if (lo > budget) return ["is-over", "über Budget"];
+    if (plan.unknown) return null;
+    return hi <= budget ? ["is-ok", "im Budget"] : ["is-tight", "knapp"];
   }
 
   function costText(r) {
@@ -183,34 +234,61 @@
     main.textContent = "";
     state.views.clear();
     state.lineViews = [];
+    state.groupViews = [];
 
-    for (const line of state.data.lines) {
-      const count = h("span", { class: "line-count" });
-      const barFill = h("i");
-      const cost = h("span", { class: "line-cost" });
-      const head = h("header", { class: "line-head" }, [
-        h("div", { class: "line-title" }, [
-          h("h2", { id: `h-${line.id}` }, line.name),
-          h("span", { class: "type-chip" }, line.typeLabel),
-        ]),
-        h("div", { class: "line-meta" }, [count, h("div", { class: "line-bar", "aria-hidden": "true" }, [barFill]), cost]),
+    const groups = Array.isArray(state.data.groups) ? state.data.groups : [];
+    const known = new Set(groups.map((g) => g.id));
+    for (const group of groups) {
+      const lines = state.data.lines.filter((l) => l.group === group.id);
+      if (!lines.length) continue;
+      const count = h("span", { class: "group-count" });
+      const head = h("header", { class: "group-head" }, [
+        h("div", { class: "group-title" }, [h("h2", { id: `g-${group.id}` }, group.name), count]),
+        group.subtitle ? h("p", { class: "group-sub" }, group.subtitle) : null,
       ]);
-      const multi = line.slots.filter((s) => s.options.length > 1);
-      if (multi.length) {
-        head.append(
-          h("p", { class: "line-hint" }, multi.map((s) => `${s.stage}: ${s.options.map((o) => o.variant).join(" oder ")}, eine reicht.`).join(" "))
-        );
-      }
-
-      const cards = h("div", { class: "cards" });
-      for (const slot of line.slots) {
-        slot.options.forEach((card) => cards.append(renderCard(line, slot, card)));
-      }
-
-      const section = h("section", { class: "line", "data-type": line.type, "aria-labelledby": `h-${line.id}` }, [head, cards]);
-      main.append(section);
-      state.lineViews.push({ line, section, count, barFill, cost });
+      main.append(head);
+      const gv = { group, head, count, lines: [] };
+      state.groupViews.push(gv);
+      for (const line of lines) gv.lines.push(renderLine(main, line, `g-${group.id}`));
     }
+    // Reihen ohne (bekannte) Gruppe trotzdem anzeigen
+    for (const line of state.data.lines) if (!known.has(line.group)) renderLine(main, line, null);
+  }
+
+  function renderLine(main, line, groupHeadingId) {
+    const count = h("span", { class: "line-count" });
+    const barFill = h("i");
+    const cost = h("span", { class: "line-cost" });
+    const budget = line.budget ? h("p", { class: "line-budget" }) : null;
+    const head = h("header", { class: "line-head" }, [
+      line.name || line.typeLabel
+        ? h("div", { class: "line-title" }, [
+            line.name ? h("h3", { id: `h-${line.id}` }, line.name) : null,
+            line.typeLabel ? h("span", { class: "type-chip" }, line.typeLabel) : null,
+          ])
+        : null,
+      h("div", { class: "line-meta" }, [count, h("div", { class: "line-bar", "aria-hidden": "true" }, [barFill]), cost]),
+      budget,
+    ]);
+    const multi = line.slots.filter((s) => s.options.length > 1);
+    if (multi.length) {
+      head.append(
+        h("p", { class: "line-hint" }, multi.map((s) => `${s.stage}: ${s.options.map((o) => o.variant).join(" oder ")}, eine reicht.`).join(" "))
+      );
+    }
+
+    const cards = h("div", { class: "cards" });
+    for (const slot of line.slots) {
+      slot.options.forEach((card) => cards.append(renderCard(line, slot, card)));
+    }
+
+    const labelledBy = line.name ? `h-${line.id}` : groupHeadingId;
+    const noStages = line.slots.every((s) => !s.stage && s.options.every((o) => !o.variant && !o.tag));
+    const section = h("section", { class: noStages ? "line no-stages" : "line", "data-type": line.type, "aria-labelledby": labelledBy }, [head, cards]);
+    main.append(section);
+    const lv = { line, section, count, barFill, cost, budget };
+    state.lineViews.push(lv);
+    return lv;
   }
 
   function renderCard(line, slot, card) {
@@ -228,13 +306,19 @@
     const art = h("button", { type: "button", class: "art", "aria-pressed": "false" }, [
       img,
       h("span", { class: "art-fallback", "aria-hidden": "true" }, [h("span", { class: "ball" }), h("span", {}, [card.name, h("br"), nr])]),
-      h("span", { class: "covered-note" }, `${slot.stage} erledigt`),
+      h("span", { class: "covered-note" }, slot.stage ? `${slot.stage} erledigt` : "erledigt"),
       h("span", { class: "check", html: ICONS.check }),
     ]);
     const zoom = h("button", { type: "button", class: "zoom", "aria-label": `${card.name} groß anzeigen` }, [h("span", { html: ICONS.zoom })]);
 
+    // Eigene Spanne = Hauptpreis, Cardmarket-Richtwert als Vergleich. Ohne Spanne gilt der Richtwert als Schätzung.
+    const mine = myRange(card);
     const priceVals = h("div", { class: "price-vals" });
-    const price = h("div", { class: "price" }, [priceVals, h("span", { class: "price-note" }, "Richtwert, alle Zustände")]);
+    const price = h("div", { class: mine ? "price has-mine" : "price" }, [
+      mine ? h("div", { class: "price-mine" }, [h("span", {}, "Meine Spanne"), h("b", {}, fmtMy(mine))]) : null,
+      priceVals,
+      h("span", { class: "price-note" }, mine ? "Vergleich: Cardmarket-Richtwert, alle Zustände" : "Geschätzt: Richtwert, alle Zustände"),
+    ]);
 
     const input = h("input", {
       type: "text",
@@ -252,7 +336,11 @@
     ]);
 
     const el = h("article", { class: "card", "data-id": card.id }, [
-      h("div", { class: "stage" }, [slot.stage, card.variant ? h("span", { class: "opt" }, card.variant) : null]),
+      h("div", { class: "stage" }, [
+        slot.stage,
+        card.variant ? h("span", { class: "opt" }, card.variant) : null,
+        card.tag ? h("span", { class: "opt opt-tag" }, card.tag) : null,
+      ]),
       h("div", { class: "art-wrap" }, [art, zoom]),
       h("div", { class: "info" }, [
         h("h3", {}, card.name),
@@ -352,15 +440,19 @@
     let hi = 0;
     let unknown = 0;
     let own = false;
+    let mine = false;
+    const results = new Map();
 
     for (const lv of state.lineViews) {
       const r = computeLine(lv.line);
+      results.set(lv, r);
       slots += r.total;
       done += r.done;
       lo += r.lo;
       hi += r.hi;
       unknown += r.unknown;
       own = own || r.own;
+      mine = mine || r.mine;
       const complete = r.done === r.total;
       if (complete) linesDone++;
 
@@ -369,12 +461,40 @@
       lv.section.classList.toggle("is-complete", complete);
       const c = costText(r);
       lv.cost.textContent = complete ? "Komplett ✓" : `noch ${c}`;
+
+      if (lv.budget) {
+        const b = lv.line.budget;
+        const plan = computePlan(lv.line);
+        const total = lv.line.slots.length;
+        const status = budgetStatus(plan, b, total);
+        const planText =
+          plan.unknown === total ? (state.loadingPrices ? "…" : "offen") : fmtRange(plan.lo, plan.hi) + (plan.unknown ? " + ?" : "");
+        lv.budget.className = `line-budget ${status ? status[0] : ""}`;
+        lv.budget.textContent = "";
+        lv.budget.append(
+          h("span", {}, ["Budget ", h("b", {}, `${fmtAmount(b)} €`)]),
+          h("span", {}, `geplant ${planText}`),
+          status ? h("span", { class: "budget-flag" }, status[1]) : null
+        );
+      }
+    }
+
+    for (const gv of state.groupViews) {
+      let gDone = 0;
+      let gTotal = 0;
+      for (const lv of gv.lines) {
+        const r = results.get(lv);
+        gDone += r.done;
+        gTotal += r.total;
+      }
+      gv.count.textContent = `${gDone}/${gTotal}`;
+      gv.head.classList.toggle("is-complete", gDone === gTotal);
     }
 
     $("#totalOwned").textContent = done;
     $("#totalSlots").textContent = slots;
     $("#totalBar").style.width = slots ? `${(done / slots) * 100}%` : "0";
-    $("#linesDone").textContent = `${linesDone} von ${state.lineViews.length} Reihen komplett`;
+    $("#linesDone").textContent = `${linesDone} von ${state.lineViews.length} Reihen & Gruppen komplett`;
 
     const missing = slots - done;
     const totalCost = $("#totalCost");
@@ -387,7 +507,7 @@
       hint.textContent = state.loadingPrices ? "Preise laden" : "keine Preise verfügbar";
     } else {
       totalCost.textContent = fmtRange(lo, hi) + (unknown ? " + ?" : "");
-      const parts = ["ab-Preis bis Trend"];
+      const parts = [mine ? "meine Spannen, sonst ab-Preis bis Trend" : "ab-Preis bis Trend"];
       if (own) parts.push("inkl. eigener Preise");
       if (unknown) parts.push(`${unknown} ohne Preis`);
       hint.textContent = parts.join(" · ");
@@ -412,6 +532,7 @@
       lv.section.hidden = !lineVisible;
       anyVisible = anyVisible || lineVisible;
     }
+    for (const gv of state.groupViews) gv.head.hidden = gv.lines.every((lv) => lv.section.hidden);
     const empty = $("#emptyState");
     empty.hidden = anyVisible;
     if (!anyVisible) empty.textContent = f === "missing" ? "Alles gesammelt, keine Karte fehlt mehr! 🎉" : "Noch keine Karte abgehakt. Tippe auf ein Kartenbild, um es abzuhaken.";
@@ -509,11 +630,17 @@
     return `Cardmarket-Richtwerte via TCGdex · Stand ${d.toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })}`;
   }
 
+  function allCardIds() {
+    return state.data.lines.flatMap((l) => l.slots.flatMap((s) => s.options.map((o) => o.id)));
+  }
+
   async function loadPrices(force) {
     const status = $("#priceStatus");
     const btn = $("#refreshPrices");
     const fresh = state.prices && Date.now() - state.prices.fetchedAt < PRICE_TTL;
-    if (fresh && !force) {
+    // Neu hinzugekommene Karten auch bei frischem Cache sofort nachladen
+    const uncached = allCardIds().filter((id) => !livePrice(id));
+    if (fresh && !force && !uncached.length) {
       status.textContent = priceStamp();
       return;
     }
@@ -525,7 +652,8 @@
     updatePrices();
     updateSummary();
 
-    const ids = state.data.lines.flatMap((l) => l.slots.flatMap((s) => s.options.map((o) => o.id)));
+    const onlyMissing = fresh && !force;
+    const ids = onlyMissing ? uncached : allCardIds();
     const result = { ...(state.prices ? state.prices.cards : {}) };
     let done = 0;
     let ok = 0;
@@ -550,7 +678,8 @@
     await Promise.all(Array.from({ length: 6 }, worker));
 
     if (ok > 0) {
-      state.prices = { fetchedAt: Date.now(), cards: result };
+      // Beim reinen Nachladen bleibt der Zeitstempel (und damit die 24-h-Frist) der übrigen Preise erhalten
+      state.prices = { fetchedAt: onlyMissing ? state.prices.fetchedAt : Date.now(), cards: result };
       store.set(KEYS.prices, state.prices);
     }
     state.loadingPrices = false;
@@ -687,6 +816,28 @@
     });
   }
 
+  // Abhak-Status und eigene Preise von Karten löschen, die nicht mehr in cards.json stehen
+  function pruneRemovedCards() {
+    const known = new Set(allCardIds());
+    const owned = [...state.owned].filter((id) => known.has(id));
+    if (owned.length !== state.owned.size) {
+      state.owned = new Set(owned);
+      store.set(KEYS.owned, owned);
+    }
+    const stale = Object.keys(state.ownPrices).filter((id) => !known.has(id));
+    if (stale.length) {
+      for (const id of stale) delete state.ownPrices[id];
+      store.set(KEYS.ownPrices, state.ownPrices);
+    }
+    if (state.prices) {
+      const cached = Object.keys(state.prices.cards).filter((id) => !known.has(id));
+      if (cached.length) {
+        for (const id of cached) delete state.prices.cards[id];
+        store.set(KEYS.prices, state.prices);
+      }
+    }
+  }
+
   async function init() {
     bindUi();
     try {
@@ -697,6 +848,7 @@
       $("#priceStatus").textContent = "";
       return;
     }
+    pruneRemovedCards();
     renderLines();
     for (const v of state.views.values()) v.own.classList.toggle("has-value", num(state.ownPrices[v.card.id]) != null);
     updateStates();

@@ -42,8 +42,78 @@
       "name": "Ewige Rivalen",
       "nameEn": "Destined Rivals",
       "official": 182
+    },
+    "MEW": {
+      "id": "sv03.5",
+      "name": "151",
+      "nameEn": "151",
+      "official": 165,
+      "serie": "sv"
+    },
+    "PRE": {
+      "id": "sv08.5",
+      "name": "Prismatische Entwicklungen",
+      "nameEn": "Prismatic Evolutions",
+      "official": 131,
+      "serie": "sv"
+    },
+    "ASC": {
+      "id": "me02.5",
+      "name": "Erhabene Helden",
+      "nameEn": "Ascended Heroes",
+      "official": 217,
+      "serie": "me"
+    },
+    "MEP": {
+      "id": "mep",
+      "name": "MEP Black Star Promos",
+      "nameEn": "MEP Black Star Promos",
+      "official": 0,
+      "serie": "me"
+    },
+    "30C": {
+      "id": "30th",
+      "name": "30 Jahre",
+      "nameEn": "30th Celebration",
+      "official": 128,
+      "serie": "me"
     }
   },
+  "groups": [
+    {
+      "id": "reihen",
+      "name": "Entwicklungsreihen"
+    },
+    {
+      "id": "151",
+      "name": "151",
+      "subtitle": "Karmesin & Purpur 151 · MEW"
+    },
+    {
+      "id": "evoli",
+      "name": "Evoli",
+      "subtitle": "Prismatische Entwicklungen · PRE"
+    },
+    {
+      "id": "mega-attack",
+      "name": "Mega Attack",
+      "subtitle": "Erhabene Helden (ASC) & MEP-Promos"
+    },
+    {
+      "id": "voegel",
+      "name": "Vögel",
+      "subtitle": "30 Jahre / 30th Celebration · 30C"
+    },
+    {
+      "id": "pikachus",
+      "name": "Pikachus",
+      "subtitle": "30 Jahre / 30th Celebration · 30C"
+    },
+    {
+      "id": "einzel",
+      "name": "Einzelkarten"
+    }
+  ],
   "lines": [
     {
       "id": "felori",
@@ -63,7 +133,11 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv02/196",
-              "cardmarketId": 715671
+              "cardmarketId": 715671,
+              "myPrice": [
+                20,
+                25
+              ]
             }
           ]
         },
@@ -79,25 +153,17 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv02/197",
-              "cardmarketId": 715672
+              "cardmarketId": 715672,
+              "myPrice": [
+                10,
+                15
+              ]
             }
           ]
         },
         {
           "stage": "Phase 2",
           "options": [
-            {
-              "id": "sv02-231",
-              "name": "Maskagato-ex",
-              "nameEn": "Meowscarada ex",
-              "set": "PAL",
-              "number": "231",
-              "rarity": "Ultra Selten",
-              "rarityEn": "Ultra Rare",
-              "variant": "Full Art",
-              "image": "https://assets.tcgdex.net/de/sv/sv02/231",
-              "cardmarketId": 715706
-            },
             {
               "id": "sv02-256",
               "name": "Maskagato-ex",
@@ -108,11 +174,16 @@
               "rarityEn": "Special illustration rare",
               "variant": "SIR",
               "image": "https://assets.tcgdex.net/de/sv/sv02/256",
-              "cardmarketId": 715731
+              "cardmarketId": 715731,
+              "myPrice": [
+                15,
+                20
+              ]
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "bisasam",
@@ -169,7 +240,9 @@
             }
           ]
         }
-      ]
+      ],
+      "budget": 80,
+      "group": "reihen"
     },
     {
       "id": "strawickl",
@@ -189,7 +262,11 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/087",
-              "cardmarketId": 836071
+              "cardmarketId": 836071,
+              "myPrice": [
+                12,
+                15
+              ]
             }
           ]
         },
@@ -205,7 +282,11 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/088",
-              "cardmarketId": 836072
+              "cardmarketId": 836072,
+              "myPrice": [
+                8,
+                10
+              ]
             }
           ]
         },
@@ -221,11 +302,16 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/089",
-              "cardmarketId": 836074
+              "cardmarketId": 836074,
+              "myPrice": [
+                30,
+                35
+              ]
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "floink",
@@ -245,7 +331,11 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/096",
-              "cardmarketId": 836084
+              "cardmarketId": 836084,
+              "myPrice": [
+                25,
+                30
+              ]
             }
           ]
         },
@@ -261,7 +351,11 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/097",
-              "cardmarketId": 836086
+              "cardmarketId": 836086,
+              "myPrice": [
+                8,
+                10
+              ]
             }
           ]
         },
@@ -277,11 +371,16 @@
               "rarity": "Selten, Illustration",
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10.5w/098",
-              "cardmarketId": 836088
+              "cardmarketId": 836088,
+              "myPrice": [
+                30,
+                30
+              ]
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "krokel",
@@ -320,37 +419,9 @@
               "cardmarketId": 715677
             }
           ]
-        },
-        {
-          "stage": "Phase 2",
-          "options": [
-            {
-              "id": "sv02-233",
-              "name": "Skelokrok-ex",
-              "nameEn": "Skeledirge ex",
-              "set": "PAL",
-              "number": "233",
-              "rarity": "Ultra Selten",
-              "rarityEn": "Ultra Rare",
-              "variant": "Full Art",
-              "image": "https://assets.tcgdex.net/de/sv/sv02/233",
-              "cardmarketId": 715708
-            },
-            {
-              "id": "sv02-258",
-              "name": "Skelokrok-ex",
-              "nameEn": "Skeledirge ex",
-              "set": "PAL",
-              "number": "258",
-              "rarity": "Selten, besondere Illustration",
-              "rarityEn": "Special illustration rare",
-              "variant": "SIR",
-              "image": "https://assets.tcgdex.net/de/sv/sv02/258",
-              "cardmarketId": 715733
-            }
-          ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "lichtel",
@@ -406,7 +477,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "ottaro",
@@ -462,7 +534,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "gelatini",
@@ -518,7 +591,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "schallquap",
@@ -574,7 +648,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "zapplardin",
@@ -630,7 +705,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "zwirrlicht",
@@ -686,7 +762,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "praktibalk",
@@ -742,7 +819,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "kiesling",
@@ -798,7 +876,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "toxiped",
@@ -854,7 +933,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "ganovil",
@@ -910,7 +990,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "milza",
@@ -966,7 +1047,8 @@
             }
           ]
         }
-      ]
+      ],
+      "group": "reihen"
     },
     {
       "id": "knapfel",
@@ -1019,6 +1101,846 @@
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv10/188",
               "cardmarketId": 826061
+            }
+          ]
+        }
+      ],
+      "group": "reihen"
+    },
+    {
+      "id": "bisasam-151",
+      "name": "Bisasam-Reihe",
+      "type": "grass",
+      "typeLabel": "Pflanze",
+      "group": "151",
+      "budget": 210,
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv03.5-166",
+              "name": "Bisasam",
+              "nameEn": "Bulbasaur",
+              "set": "MEW",
+              "number": "166",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                60,
+                70
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/166",
+              "cardmarketId": 733761
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv03.5-167",
+              "name": "Bisaknosp",
+              "nameEn": "Ivysaur",
+              "set": "MEW",
+              "number": "167",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                40,
+                45
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/167",
+              "cardmarketId": 733762
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv03.5-198",
+              "name": "Bisaflor-ex",
+              "nameEn": "Venusaur ex",
+              "set": "MEW",
+              "number": "198",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "myPrice": [
+                80,
+                100
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/198",
+              "cardmarketId": 733793
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glumanda-151",
+      "name": "Glumanda-Reihe",
+      "type": "fire",
+      "typeLabel": "Feuer",
+      "group": "151",
+      "budget": 430,
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv03.5-168",
+              "name": "Glumanda",
+              "nameEn": "Charmander",
+              "set": "MEW",
+              "number": "168",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                70,
+                85
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/168",
+              "cardmarketId": 733763
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv03.5-169",
+              "name": "Glutexo",
+              "nameEn": "Charmeleon",
+              "set": "MEW",
+              "number": "169",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                50,
+                60
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/169",
+              "cardmarketId": 733764
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv03.5-199",
+              "name": "Glurak-ex",
+              "nameEn": "Charizard ex",
+              "set": "MEW",
+              "number": "199",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "myPrice": [
+                270,
+                320
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/199",
+              "cardmarketId": 733794
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schiggy-151",
+      "name": "Schiggy-Reihe",
+      "type": "water",
+      "typeLabel": "Wasser",
+      "group": "151",
+      "budget": 255,
+      "slots": [
+        {
+          "stage": "Basis",
+          "options": [
+            {
+              "id": "sv03.5-170",
+              "name": "Schiggy",
+              "nameEn": "Squirtle",
+              "set": "MEW",
+              "number": "170",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                70,
+                80
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/170",
+              "cardmarketId": 733765
+            }
+          ]
+        },
+        {
+          "stage": "Phase 1",
+          "options": [
+            {
+              "id": "sv03.5-171",
+              "name": "Schillok",
+              "nameEn": "Wartortle",
+              "set": "MEW",
+              "number": "171",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                50,
+                65
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/171",
+              "cardmarketId": 733766
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv03.5-200",
+              "name": "Turtok-ex",
+              "nameEn": "Blastoise ex",
+              "set": "MEW",
+              "number": "200",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "myPrice": [
+                120,
+                140
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv03.5/200",
+              "cardmarketId": 733795
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evoli",
+      "type": "colorless",
+      "group": "evoli",
+      "slots": [
+        {
+          "options": [
+            {
+              "id": "sv08.5-144",
+              "name": "Folipurba-ex",
+              "nameEn": "Leafeon ex",
+              "set": "PRE",
+              "number": "144",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                220,
+                250
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/144",
+              "cardmarketId": 805538
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-146",
+              "name": "Flamara-ex",
+              "nameEn": "Flareon ex",
+              "set": "PRE",
+              "number": "146",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                140,
+                160
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/146",
+              "cardmarketId": 805540
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-149",
+              "name": "Aquana-ex",
+              "nameEn": "Vaporeon ex",
+              "set": "PRE",
+              "number": "149",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                140,
+                160
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/149",
+              "cardmarketId": 805543
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-150",
+              "name": "Glaziola-ex",
+              "nameEn": "Glaceon ex",
+              "set": "PRE",
+              "number": "150",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                140,
+                150
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/150",
+              "cardmarketId": 805544
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-153",
+              "name": "Blitza-ex",
+              "nameEn": "Jolteon ex",
+              "set": "PRE",
+              "number": "153",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                145,
+                180
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/153",
+              "cardmarketId": 805547
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-155",
+              "name": "Psiana-ex",
+              "nameEn": "Espeon ex",
+              "set": "PRE",
+              "number": "155",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                160,
+                190
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/155",
+              "cardmarketId": 805549
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-156",
+              "name": "Feelinara-ex",
+              "nameEn": "Sylveon ex",
+              "set": "PRE",
+              "number": "156",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                240,
+                300
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/156",
+              "cardmarketId": 805550
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "sv08.5-161",
+              "name": "Nachtara-ex",
+              "nameEn": "Umbreon ex",
+              "set": "PRE",
+              "number": "161",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                700,
+                1000
+              ],
+              "image": "https://assets.tcgdex.net/de/sv/sv08.5/161",
+              "cardmarketId": 805555
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mega-attack",
+      "type": "mixed",
+      "group": "mega-attack",
+      "budget": 80,
+      "slots": [
+        {
+          "options": [
+            {
+              "id": "me02.5-265",
+              "name": "Mega-Frosdedje-ex",
+              "nameEn": "Mega Froslass ex",
+              "set": "ASC",
+              "number": "265",
+              "rarity": "Mega Attack Rare",
+              "rarityEn": "Mega Attack Rare",
+              "myPrice": [
+                5,
+                7
+              ],
+              "image": "https://assets.tcgdex.net/de/me/me02.5/265",
+              "cardmarketId": 869876
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "me02.5-266",
+              "name": "Mega-Zapplarang-ex",
+              "nameEn": "Mega Eelektross ex",
+              "set": "ASC",
+              "number": "266",
+              "rarity": "Mega Attack Rare",
+              "rarityEn": "Mega Attack Rare",
+              "myPrice": [
+                2,
+                5
+              ],
+              "image": "https://assets.tcgdex.net/de/me/me02.5/266",
+              "cardmarketId": 869877
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "me02.5-268",
+              "name": "Mega-Resladero-ex",
+              "nameEn": "Mega Hawlucha ex",
+              "set": "ASC",
+              "number": "268",
+              "rarity": "Mega Attack Rare",
+              "rarityEn": "Mega Attack Rare",
+              "myPrice": [
+                3,
+                5
+              ],
+              "image": "https://assets.tcgdex.net/de/me/me02.5/268",
+              "cardmarketId": 869879
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "me02.5-269",
+              "name": "Mega-Gengar-ex",
+              "nameEn": "Mega Gengar ex",
+              "set": "ASC",
+              "number": "269",
+              "rarity": "Mega Attack Rare",
+              "rarityEn": "Mega Attack Rare",
+              "myPrice": [
+                30,
+                35
+              ],
+              "image": "https://assets.tcgdex.net/de/me/me02.5/269",
+              "cardmarketId": 869880
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "mep-023",
+              "name": "Mega-Glurak X-ex",
+              "nameEn": "Mega Charizard X ex",
+              "set": "MEP",
+              "number": "023",
+              "rarity": "Promo",
+              "rarityEn": "Promo",
+              "myPrice": [
+                35,
+                40
+              ],
+              "image": "https://assets.tcgdex.net/de/me/mep/023",
+              "cardmarketId": 859033
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "mep-032",
+              "name": "Mega-Guardevoir-ex",
+              "nameEn": "Mega Gardevoir ex",
+              "set": "MEP",
+              "number": "032",
+              "rarity": "Promo",
+              "rarityEn": "Promo",
+              "myPrice": [
+                3,
+                5
+              ],
+              "image": "https://assets.tcgdex.net/de/me/mep/032",
+              "cardmarketId": 873708
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voegel",
+      "type": "mixed",
+      "group": "voegel",
+      "budget": 21,
+      "slots": [
+        {
+          "options": [
+            {
+              "id": "30th-130",
+              "name": "Lavados",
+              "nameEn": "Moltres",
+              "set": "30C",
+              "number": "130",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                7,
+                8
+              ],
+              "image": "https://assets.tcgdex.net/de/me/30th/130",
+              "cardmarketId": 907738
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-132",
+              "name": "Arktos",
+              "nameEn": "Articuno",
+              "set": "30C",
+              "number": "132",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                7,
+                8
+              ],
+              "image": "https://assets.tcgdex.net/de/me/30th/132",
+              "cardmarketId": 907740
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-133",
+              "name": "Zapdos",
+              "nameEn": "Zapdos",
+              "set": "30C",
+              "number": "133",
+              "rarity": "Selten, Illustration",
+              "rarityEn": "Illustration rare",
+              "myPrice": [
+                7,
+                8
+              ],
+              "image": "https://assets.tcgdex.net/de/me/30th/133",
+              "cardmarketId": 907741
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-011",
+              "name": "Lavados",
+              "nameEn": "Moltres",
+              "set": "30C",
+              "number": "011",
+              "rarity": "Häufig",
+              "rarityEn": "Common",
+              "myPrice": [
+                0.05,
+                0.05
+              ],
+              "tag": "Normale Karte",
+              "image": "https://assets.tcgdex.net/de/me/30th/011",
+              "cardmarketId": 907617
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pikachus",
+      "type": "electric",
+      "typeLabel": "Elektro",
+      "group": "pikachus",
+      "slots": [
+        {
+          "options": [
+            {
+              "id": "30th-023",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "023",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/023",
+              "cardmarketId": 907630
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-026",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "026",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/026",
+              "cardmarketId": 907633
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-027",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "027",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/027",
+              "cardmarketId": 907634
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-029",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "029",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/029",
+              "cardmarketId": 907636
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-030",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "030",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/030",
+              "cardmarketId": 907637
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-033",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "033",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/033",
+              "cardmarketId": 907640
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-035",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "035",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/035",
+              "cardmarketId": 907642
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-036",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "036",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/036",
+              "cardmarketId": 907643
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-037",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "037",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/037",
+              "cardmarketId": 907644
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-038",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "038",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/038",
+              "cardmarketId": 907645
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-042",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "042",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/042",
+              "cardmarketId": 907649
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-046",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "046",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/046",
+              "cardmarketId": 907653
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-047",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "047",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/047",
+              "cardmarketId": 907654
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-050",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "050",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/050",
+              "cardmarketId": 907657
+            }
+          ]
+        },
+        {
+          "options": [
+            {
+              "id": "30th-052",
+              "name": "Pikachu",
+              "nameEn": "Pikachu",
+              "set": "30C",
+              "number": "052",
+              "rarity": "Pikachu Rare",
+              "rarityEn": "Pikachu Rare",
+              "image": "https://assets.tcgdex.net/de/me/30th/052",
+              "cardmarketId": 907659
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "einzelkarten",
+      "type": "fighting",
+      "typeLabel": "Kampf",
+      "group": "einzel",
+      "slots": [
+        {
+          "options": [
+            {
+              "id": "me01-179",
+              "name": "Mega-Lucario-ex",
+              "nameEn": "Mega Lucario ex",
+              "set": "MEG",
+              "number": "179",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "myPrice": [
+                70,
+                70
+              ],
+              "image": "https://assets.tcgdex.net/de/me/me01/179",
+              "cardmarketId": 851250
             }
           ]
         }

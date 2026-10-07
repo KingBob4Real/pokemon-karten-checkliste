@@ -18,8 +18,17 @@ Statische Checkliste für meine deutschen Illustration Rares und Full Arts, opti
 
 Kein Build-Schritt nötig. Lokal testen geht mit einem einfachen Webserver, z. B. `python -m http.server` im Ordner. Ein Doppelklick auf `index.html` reicht nicht, weil `cards.json` dann nicht geladen werden kann.
 
+## Aufbau von cards.json
+
+- `groups`: Überschriften in Anzeigereihenfolge (`id`, `name`, optional `subtitle`).
+- `lines`: Reihen bzw. Kartengruppen. Jede hat eine `group`, einen `type` (Farbe) und optional `name`, `typeLabel` und `budget` (in €).
+- `lines[].slots[]`: ein Platz pro Karte, optional mit `stage` („Basis“, „Phase 1“ …). Ein Platz mit mehreren `options` gilt als erledigt, sobald eine davon abgehakt ist.
+- Karte: `id` (TCGdex-ID), `name`, `set`, `number` und optional:
+  - `myPrice: [min, max]`: deine Preisspanne. Sie wird als Hauptpreis angezeigt und für die Summen genutzt.
+  - `variant`, `tag`: kleine Etiketten über dem Bild.
+
 ## Karte hinzufügen
 
-In `cards.json` bei der passenden Reihe unter `slots[].options` einen Eintrag ergänzen. Die `id` muss die TCGdex-Karten-ID sein (z. B. `sv02-196`, prüfbar unter `https://api.tcgdex.net/v2/de/cards/sv02-196`).
+In `cards.json` bei der passenden Reihe unter `slots` einen Eintrag ergänzen. Die `id` muss die TCGdex-Karten-ID sein (z. B. `sv02-196`, prüfbar unter `https://api.tcgdex.net/v2/de/cards/sv02-196`). Karten, die aus `cards.json` entfernt werden, verschwinden beim nächsten Laden auch aus dem gespeicherten Abhak-Status.
 
 Kartenbilder und Daten stammen von TCGdex. Fan-Projekt ohne Verbindung zu Nintendo, Creatures, GAME FREAK, The Pokémon Company oder Cardmarket.
