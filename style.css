@@ -322,44 +322,6 @@ body::before {
 .backup-reminder[hidden] { display: none; }
 .backup-reminder .btn { min-height: 40px; padding: 8px 14px; font-size: 14px; }
 
-/* „Rückgängig“-Hinweis nach dem Abhaken */
-.toast {
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 6px 6px 6px 16px;
-  border-radius: 99px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--ink);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  animation: toast-in 0.2s ease;
-}
-.toast[hidden] { display: none; }
-.toast span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.toast button {
-  flex: none;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 99px;
-  font-weight: 800;
-  color: var(--ink);
-  background: #fff;
-  cursor: pointer;
-}
-@keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
-
 .loading, .empty {
   text-align: center;
   color: var(--muted);

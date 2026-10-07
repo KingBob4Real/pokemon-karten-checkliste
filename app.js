@@ -67,8 +67,6 @@
   const int = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
   let filterTimer = null;
   let lightboxId = null;
-  let toastTimer = null;
-  let undoId = null;
 
   // ---------- Hilfsfunktionen ----------
   function isPlainObject(x) {
@@ -355,10 +353,7 @@
     });
     img.addEventListener("load", () => art.classList.remove("no-img"));
 
-    art.addEventListener("click", () => {
-      toggleOwned(card.id);
-      showUndo(card.id);
-    });
+    art.addEventListener("click", () => toggleOwned(card.id));
     zoom.addEventListener("click", () => openLightbox(card.id));
 
     const stored = num(state.ownPrices[card.id]);
@@ -576,21 +571,6 @@
     // Weit unten gescrollt? Treffer direkt unter die Suchleiste holen
     const top = $(".hero").offsetHeight;
     if (window.scrollY > top) window.scrollTo({ top });
-  }
-
-  // Versehentlich angetippt? Kurz „Rückgängig“ anbieten.
-  function showUndo(id) {
-    const v = state.views.get(id);
-    undoId = id;
-    $("#toastText").textContent = `${v.card.name} ${v.nr} ${state.owned.has(id) ? "abgehakt" : "entfernt"}`;
-    $("#toast").hidden = false;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(hideToast, 5000);
-  }
-
-  function hideToast() {
-    clearTimeout(toastTimer);
-    $("#toast").hidden = true;
   }
 
   function updateBackupReminder() {
@@ -840,10 +820,6 @@
     $("#refreshPrices").addEventListener("click", () => loadPrices(true));
     $("#exportBtn").addEventListener("click", exportData);
     $("#backupReminderBtn").addEventListener("click", exportData);
-    $("#toastUndo").addEventListener("click", () => {
-      hideToast();
-      toggleOwned(undoId);
-    });
     $("#importFile").addEventListener("change", (e) => {
       const file = e.target.files && e.target.files[0];
       if (file) importData(file);

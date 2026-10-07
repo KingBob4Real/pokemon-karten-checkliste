@@ -4,7 +4,6 @@ Statische Checkliste für meine deutschen Illustration Rares und Full Arts, opti
 
 - **Abhaken:** Kartenbild antippen. Die Lupe oben rechts öffnet die große Ansicht.
 - **Suche:** Feld über dem Filter, findet Karten nach deutschem oder englischem Namen, Nummer (`199`, `199/165`) und Set-Kürzel (`PAL 196`). Lässt sich mit „Nur fehlende“ / „Nur vorhanden“ kombinieren.
-- **Rückgängig:** Nach jedem Antippen erscheint unten kurz „Rückgängig“, falls man sich vertippt hat.
 - **Als App & offline:** iPhone: In Safari Teilen → „Zum Home-Bildschirm“. Ein Service Worker (`sw.js`) speichert Seite, Kartendaten und alle einmal angezeigten Bilder, die App funktioniert dann auch ohne Internet. Die Home-Bildschirm-App hat einen eigenen Speicher: vorher in Safari exportieren, in der App importieren.
 - **Speicherung:** Abhak-Status und eigene Preise liegen im `localStorage` des Browsers. Über **Export / Import** lassen sie sich als JSON-Datei auf andere Geräte übertragen. Ist die letzte Sicherung älter als 30 Tage (oder gab es noch keine), erinnert ein Hinweis oben daran.
 - **Preise:** Cardmarket-Richtwerte (`low` = „ab“, `trend`) aus der [TCGdex-API](https://tcgdex.dev). Sie gelten für alle Zustände und Sprachen und werden 24 Stunden zwischengespeichert. Mit „Preise aktualisieren“ lädst du sie sofort neu.
