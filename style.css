@@ -210,12 +210,66 @@ button { font: inherit; color: inherit; }
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 8px;
 }
+/* Ab Tablet: Suche und Filter nebeneinander */
+@media (min-width: 760px) {
+  .toolbar { grid-template-columns: repeat(2, minmax(0, 440px)); justify-content: center; gap: 12px; }
+}
+
+.search { position: relative; width: 100%; max-width: 520px; margin: 0 auto; }
+.search > svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.search input {
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 46px 8px 40px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px; /* verhindert Auto-Zoom auf iOS */
+  font-weight: 700;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search input::placeholder { color: var(--muted); font-weight: 600; opacity: 1; }
+.search input::-webkit-search-cancel-button { display: none; } /* eigener Leeren-Knopf, auch für Firefox */
+.search input:focus { outline: none; border-color: var(--t-water); box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-water) 25%, transparent); }
+.search-clear {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.search-clear[hidden] { display: none; }
+.search-clear svg { width: 18px; height: 18px; }
 
 .segmented {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
+  width: 100%;
   max-width: 520px;
   margin: 0 auto;
   padding: 4px;
@@ -225,11 +279,12 @@ button { font: inherit; color: inherit; }
 }
 .segmented button {
   min-height: 40px;
+  padding: 0 4px;
   border: 0;
   border-radius: 99px;
   background: transparent;
   font-weight: 800;
-  font-size: 14px;
+  font-size: clamp(12.5px, 3.6vw, 14px); /* „Nur vorhanden“ bleibt auf 375 px einzeilig */
   color: var(--muted);
   cursor: pointer;
 }

@@ -47,6 +47,13 @@
   </header>
 
   <nav class="toolbar" aria-label="Filter">
+    <div class="search" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.2 15.2L20 20" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <input type="search" id="search" placeholder="Name oder Nummer suchen …" aria-label="Karten suchen nach Name oder Nummer" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+      <button type="button" class="search-clear" id="searchClear" aria-label="Suche leeren" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
     <div class="segmented" role="radiogroup" aria-label="Karten anzeigen">
       <button type="button" role="radio" data-filter="all" aria-checked="true">Alle</button>
       <button type="button" role="radio" data-filter="missing" aria-checked="false">Nur fehlende</button>

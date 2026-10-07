@@ -53,6 +53,7 @@
     ownPrices: isPlainObject(savedOwn) ? savedOwn : {},
     prices: isPlainObject(savedPrices) && typeof savedPrices.fetchedAt === "number" && isPlainObject(savedPrices.cards) ? savedPrices : null,
     filter: FILTERS.includes(savedFilter) ? savedFilter : "all",
+    query: [], // Suchbegriffe, normalisiert
     loadingPrices: false,
     views: new Map(), // Karten-ID → DOM-Referenzen
     lineViews: [],
@@ -68,6 +69,11 @@
   // ---------- Hilfsfunktionen ----------
   function isPlainObject(x) {
     return x != null && typeof x === "object" && !Array.isArray(x);
+  }
+
+  // klein, ohne Akzente: „Pokémon“ findet man auch mit „pokemon“
+  function norm(s) {
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   }
 
   function num(x) {
@@ -286,7 +292,7 @@
     const noStages = line.slots.every((s) => !s.stage && s.options.every((o) => !o.variant && !o.tag));
     const section = h("section", { class: noStages ? "line no-stages" : "line", "data-type": line.type, "aria-labelledby": labelledBy }, [head, cards]);
     main.append(section);
-    const lv = { line, section, count, barFill, cost, budget };
+    const lv = { line, section, cards, count, barFill, cost, budget };
     state.lineViews.push(lv);
     return lv;
   }
@@ -355,7 +361,9 @@
       ]),
     ]);
 
-    const v = { el, card, slot, line, nr, art, img, price, priceVals, input, own, link, imgBase: null, imgStage: 0 };
+    // Suchtext: deutscher & englischer Name, Nummer (196) und Set-Kürzel (PAL) – ohne „/193“, sonst findet „1“ jede Karte
+    const search = norm(`${card.name} ${card.nameEn || ""} ${card.number} ${card.set}`);
+    const v = { el, card, slot, line, nr, search, art, img, price, priceVals, input, own, link, imgBase: null, imgStage: 0 };
     state.views.set(card.id, v);
 
     // Bild: deutsch → englisch → Platzhalter
@@ -526,8 +534,11 @@
         const done = slotDone(slot);
         for (const card of slot.options) {
           const owned = state.owned.has(card.id);
-          const show = f === "all" || (f === "owned" && owned) || (f === "missing" && !owned && !done);
-          state.views.get(card.id).el.hidden = !show;
+          const v = state.views.get(card.id);
+          const show =
+            (f === "all" || (f === "owned" && owned) || (f === "missing" && !owned && !done)) &&
+            state.query.every((t) => v.search.includes(t));
+          v.el.hidden = !show;
           lineVisible = lineVisible || show;
         }
       }
@@ -537,7 +548,9 @@
     for (const gv of state.groupViews) gv.head.hidden = gv.lines.every((lv) => lv.section.hidden);
     const empty = $("#emptyState");
     empty.hidden = anyVisible;
-    if (!anyVisible) empty.textContent = f === "missing" ? "Alles gesammelt, keine Karte fehlt mehr! 🎉" : "Noch keine Karte abgehakt. Tippe auf ein Kartenbild, um es abzuhaken.";
+    if (!anyVisible && state.query.length)
+      empty.textContent = `Keine Karte gefunden für „${$("#search").value.trim()}“.` + (f === "all" ? "" : " Tipp: Filter auf „Alle“ stellen.");
+    else if (!anyVisible) empty.textContent = f === "missing" ? "Alles gesammelt, keine Karte fehlt mehr! 🎉" : "Noch keine Karte abgehakt. Tippe auf ein Kartenbild, um es abzuhaken.";
 
     document.querySelectorAll(".segmented button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.filter === f)));
   }
@@ -585,6 +598,19 @@
     state.filter = f;
     store.set(KEYS.filter, f);
     applyFilter();
+  }
+
+  function setSearch(text) {
+    // „#199“ und „199/165“ → „199“
+    state.query = norm(text).replace(/#|\/\d*/g, " ").split(/\s+/).filter(Boolean);
+    $("#searchClear").hidden = !text;
+    if (!state.data) return; // Karten noch nicht geladen, init() filtert danach
+    // Wischreihen auf dem Handy nach vorne, damit Treffer sichtbar sind
+    for (const lv of state.lineViews) lv.cards.scrollLeft = 0;
+    applyFilter();
+    // Weit unten gescrollt? Treffer direkt unter die Suchleiste holen
+    const top = $(".hero").offsetHeight;
+    if (window.scrollY > top) window.scrollTo({ top });
   }
 
   function showNotice(text) {
@@ -798,6 +824,16 @@
   // ---------- Start ----------
   function bindUi() {
     document.querySelectorAll(".segmented button").forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.filter)));
+    const search = $("#search");
+    search.addEventListener("input", () => setSearch(search.value));
+    search.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") search.blur(); // Handy-Tastatur zuklappen
+    });
+    $("#searchClear").addEventListener("click", () => {
+      search.value = "";
+      setSearch("");
+      search.focus();
+    });
     $("#refreshPrices").addEventListener("click", () => loadPrices(true));
     $("#exportBtn").addEventListener("click", exportData);
     $("#importFile").addEventListener("change", (e) => {
