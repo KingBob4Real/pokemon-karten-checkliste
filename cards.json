@@ -81,6 +81,11 @@
   },
   "groups": [
     {
+      "id": "mega-attack",
+      "name": "Mega Attack",
+      "subtitle": "Erhabene Helden (ASC) & MEP-Promos"
+    },
+    {
       "id": "reihen",
       "name": "Entwicklungsreihen"
     },
@@ -93,11 +98,6 @@
       "id": "evoli",
       "name": "Evoli",
       "subtitle": "Prismatische Entwicklungen · PRE"
-    },
-    {
-      "id": "mega-attack",
-      "name": "Mega Attack",
-      "subtitle": "Erhabene Helden (ASC) & MEP-Promos"
     },
     {
       "id": "voegel",

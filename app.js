@@ -317,7 +317,8 @@
     const price = h("div", { class: mine ? "price has-mine" : "price" }, [
       mine ? h("div", { class: "price-mine" }, [h("span", {}, "Meine Spanne"), h("b", {}, fmtMy(mine))]) : null,
       priceVals,
-      h("span", { class: "price-note" }, mine ? "Vergleich: Cardmarket-Richtwert, alle Zustände" : "Geschätzt: Richtwert, alle Zustände"),
+      // Die API-Werte mischen alle Sprachen und Zustände – nicht der Preis für deutsche Karten ab Excellent
+      h("span", { class: "price-note" }, mine ? "Vergleich: Richtwert aller Sprachen & Zustände" : "Geschätzt: Richtwert aller Sprachen & Zustände"),
     ]);
 
     const input = h("input", {
@@ -350,6 +351,7 @@
         price,
         own,
         link,
+        h("p", { class: "cm-hint" }, "Deutsch · ab Excellent"),
       ]),
     ]);
 

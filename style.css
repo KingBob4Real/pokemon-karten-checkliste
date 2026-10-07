@@ -647,6 +647,7 @@ main {
 }
 .line[data-type="electric"] .cm-link { color: #2a2200; }
 .cm-icon { display: inline-flex; }
+.cm-hint { margin: 4px 0 0; font-size: 11px; font-weight: 700; text-align: center; color: var(--muted); }
 .cm-link svg { width: 15px; height: 15px; }
 
 .line-hint {
