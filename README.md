@@ -22,7 +22,7 @@ Kein Build-Schritt nötig. Lokal testen geht mit einem einfachen Webserver, z. B
 ## Aufbau von cards.json
 
 - `groups`: Überschriften in Anzeigereihenfolge (`id`, `name`, optional `subtitle`).
-- `lines`: Reihen bzw. Kartengruppen. Jede hat eine `group`, einen `type` (Farbe) und optional `name`, `typeLabel` und `budget` (in €).
+- `lines`: Reihen bzw. Kartengruppen. Jede hat eine `group`, einen `type` (Farbe) und optional `name` und `typeLabel`.
 - `lines[].slots[]`: ein Platz pro Karte, optional mit `stage` („Basis“, „Phase 1“ …). Ein Platz mit mehreren `options` gilt als erledigt, sobald eine davon abgehakt ist.
 - Karte: `id` (TCGdex-ID), `name`, `set`, `number` und optional:
   - `myPrice: [min, max]`: deine Preisspanne. Sie wird als Hauptpreis angezeigt und für die Summen genutzt.

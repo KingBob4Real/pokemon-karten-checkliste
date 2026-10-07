@@ -426,19 +426,6 @@ main {
 .line-cost { font-weight: 700; color: var(--muted); white-space: nowrap; }
 .line.is-complete .line-cost { color: var(--c); }
 
-/* Budget-Zeile: Budget vs. geplante Gesamtsumme der Gruppe */
-.line-budget {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 10px;
-  margin: 8px 0 0;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-}
-.line-budget b { color: var(--text); }
-
 /* ===== Karten (horizontal wischbar) ===== */
 .cards {
   display: grid;

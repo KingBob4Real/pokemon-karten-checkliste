@@ -202,22 +202,6 @@
     return r;
   }
 
-  // Geplante Gesamtkosten einer Gruppe für den Budget-Vergleich – abgehakte Karten zählen mit.
-  function computePlan(line) {
-    const r = { lo: 0, hi: 0, unknown: 0 };
-    for (const slot of line.slots) {
-      const owned = slot.options.filter((o) => state.owned.has(o.id));
-      const e = slotEstimate(owned.length ? { options: owned } : slot);
-      if (e) {
-        r.lo += e.lo;
-        r.hi += e.hi;
-      } else {
-        r.unknown++;
-      }
-    }
-    return r;
-  }
-
   function costText(r) {
     const missing = r.total - r.done;
     if (missing === 0) return null;
@@ -256,7 +240,6 @@
     const count = h("span", { class: "line-count" });
     const barFill = h("i");
     const cost = h("span", { class: "line-cost" });
-    const budget = line.budget ? h("p", { class: "line-budget" }) : null;
     const head = h("header", { class: "line-head" }, [
       line.name || line.typeLabel
         ? h("div", { class: "line-title" }, [
@@ -265,7 +248,6 @@
           ])
         : null,
       h("div", { class: "line-meta" }, [count, h("div", { class: "line-bar", "aria-hidden": "true" }, [barFill]), cost]),
-      budget,
     ]);
     const multi = line.slots.filter((s) => s.options.length > 1);
     if (multi.length) {
@@ -283,7 +265,7 @@
     const noStages = line.slots.every((s) => !s.stage && s.options.every((o) => !o.variant && !o.tag));
     const section = h("section", { class: noStages ? "line no-stages" : "line", "data-type": line.type, "aria-labelledby": labelledBy }, [head, cards]);
     main.append(section);
-    const lv = { line, section, cards, count, barFill, cost, budget };
+    const lv = { line, section, cards, count, barFill, cost };
     state.lineViews.push(lv);
     return lv;
   }
@@ -462,16 +444,6 @@
       lv.section.classList.toggle("is-complete", complete);
       const c = costText(r);
       lv.cost.textContent = complete ? "Komplett ✓" : `noch ${c}`;
-
-      if (lv.budget) {
-        const b = lv.line.budget;
-        const plan = computePlan(lv.line);
-        const total = lv.line.slots.length;
-        const planText =
-          plan.unknown === total ? (state.loadingPrices ? "…" : "offen") : fmtRange(plan.lo, plan.hi) + (plan.unknown ? " + ?" : "");
-        lv.budget.textContent = "";
-        lv.budget.append(h("span", {}, ["Budget ", h("b", {}, `${fmtAmount(b)} €`)]), h("span", {}, `geplant ${planText}`));
-      }
     }
 
     for (const gv of state.groupViews) {

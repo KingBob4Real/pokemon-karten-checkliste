@@ -241,7 +241,6 @@
           ]
         }
       ],
-      "budget": 80,
       "group": "reihen"
     },
     {
@@ -1130,7 +1129,6 @@
       "type": "grass",
       "typeLabel": "Pflanze",
       "group": "151",
-      "budget": 210,
       "slots": [
         {
           "stage": "Basis",
@@ -1201,7 +1199,6 @@
       "type": "fire",
       "typeLabel": "Feuer",
       "group": "151",
-      "budget": 430,
       "slots": [
         {
           "stage": "Basis",
@@ -1272,7 +1269,6 @@
       "type": "water",
       "typeLabel": "Wasser",
       "group": "151",
-      "budget": 255,
       "slots": [
         {
           "stage": "Basis",
@@ -1500,7 +1496,6 @@
       "id": "mega-attack",
       "type": "mixed",
       "group": "mega-attack",
-      "budget": 80,
       "slots": [
         {
           "options": [
@@ -1622,7 +1617,6 @@
       "id": "voegel",
       "type": "mixed",
       "group": "voegel",
-      "budget": 21,
       "slots": [
         {
           "options": [
