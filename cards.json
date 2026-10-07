@@ -86,6 +86,11 @@
       "subtitle": "Erhabene Helden (ASC) & MEP-Promos"
     },
     {
+      "id": "voegel",
+      "name": "Vögel",
+      "subtitle": "30 Jahre / 30th Celebration · 30C"
+    },
+    {
       "id": "reihen",
       "name": "Entwicklungsreihen"
     },
@@ -98,11 +103,6 @@
       "id": "evoli",
       "name": "Evoli",
       "subtitle": "Prismatische Entwicklungen · PRE"
-    },
-    {
-      "id": "voegel",
-      "name": "Vögel",
-      "subtitle": "30 Jahre / 30th Celebration · 30C"
     },
     {
       "id": "pikachus",
@@ -417,6 +417,23 @@
               "rarityEn": "Illustration rare",
               "image": "https://assets.tcgdex.net/de/sv/sv02/202",
               "cardmarketId": 715677
+            }
+          ]
+        },
+        {
+          "stage": "Phase 2",
+          "options": [
+            {
+              "id": "sv02-258",
+              "name": "Skelokrok-ex",
+              "nameEn": "Skeledirge ex",
+              "set": "PAL",
+              "number": "258",
+              "rarity": "Selten, besondere Illustration",
+              "rarityEn": "Special illustration rare",
+              "variant": "SIR",
+              "image": "https://assets.tcgdex.net/de/sv/sv02/258",
+              "cardmarketId": 715733
             }
           ]
         }
