@@ -438,17 +438,6 @@ main {
   color: var(--muted);
 }
 .line-budget b { color: var(--text); }
-.budget-flag {
-  padding: 1px 8px;
-  border-radius: 99px;
-  font-size: 11.5px;
-  font-weight: 800;
-  color: #fff;
-  background: var(--muted);
-}
-.line-budget.is-ok .budget-flag { background: #2f9e44; }
-.line-budget.is-tight .budget-flag { background: #c77c02; }
-.line-budget.is-over .budget-flag { background: #d6336c; }
 
 /* ===== Karten (horizontal wischbar) ===== */
 .cards {

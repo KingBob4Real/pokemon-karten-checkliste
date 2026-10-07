@@ -218,15 +218,6 @@
     return r;
   }
 
-  function budgetStatus(plan, budget, slots) {
-    if (plan.unknown === slots) return null;
-    const lo = Math.round(plan.lo);
-    const hi = Math.round(plan.hi);
-    if (lo > budget) return ["is-over", "über Budget"];
-    if (plan.unknown) return null;
-    return hi <= budget ? ["is-ok", "im Budget"] : ["is-tight", "knapp"];
-  }
-
   function costText(r) {
     const missing = r.total - r.done;
     if (missing === 0) return null;
@@ -476,16 +467,10 @@
         const b = lv.line.budget;
         const plan = computePlan(lv.line);
         const total = lv.line.slots.length;
-        const status = budgetStatus(plan, b, total);
         const planText =
           plan.unknown === total ? (state.loadingPrices ? "…" : "offen") : fmtRange(plan.lo, plan.hi) + (plan.unknown ? " + ?" : "");
-        lv.budget.className = `line-budget ${status ? status[0] : ""}`;
         lv.budget.textContent = "";
-        lv.budget.append(
-          h("span", {}, ["Budget ", h("b", {}, `${fmtAmount(b)} €`)]),
-          h("span", {}, `geplant ${planText}`),
-          status ? h("span", { class: "budget-flag" }, status[1]) : null
-        );
+        lv.budget.append(h("span", {}, ["Budget ", h("b", {}, `${fmtAmount(b)} €`)]), h("span", {}, `geplant ${planText}`));
       }
     }
 
